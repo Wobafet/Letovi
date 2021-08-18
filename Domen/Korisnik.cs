@@ -12,5 +12,6 @@ namespace Domen
         public string Sifra { get; set; }
         public string Email { get; set; }
         public TipKorisnika TipKorisnika { get; set; }
+        public List<Rezervacija> Rezervacija { get; set; }
     }
 }

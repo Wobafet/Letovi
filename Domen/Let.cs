@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domen
 {
@@ -10,5 +11,7 @@ namespace Domen
         public DateTime Datum { get; set; }
         public int BrojPresedanja { get; set; }
         public int BrojMesta { get; set; }
+        public List<Rezervacija> Rezervacija { get; set; }
+
     }
 }
