@@ -50,7 +50,7 @@ namespace LetWebApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Korisnik}/{action=SignIn}/{id?}");
             });
         }
     }

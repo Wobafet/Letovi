@@ -19,7 +19,7 @@ namespace Data.Implementacija.Repozitorijumi
 
         public Korisnik Find(Predicate<Korisnik> p)
         {
-            throw new NotImplementedException();
+            return context.Korisnik.ToList().Find(p);
         }
 
         public List<Korisnik> FindAll()
