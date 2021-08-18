@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domen", "Domen\Domen.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{369D914C-1DE7-483E-9109-18A3B871515D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiznisLogika", "BiznisLogika\BiznisLogika.csproj", "{BB6D8A14-F947-4667-B2E5-719AB70BA8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetWebApp", "LetWebApp\LetWebApp.csproj", "{EB66C8F8-841D-4A10-9D3A-5112EDDEFB31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{369D914C-1DE7-483E-9109-18A3B871515D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{369D914C-1DE7-483E-9109-18A3B871515D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{369D914C-1DE7-483E-9109-18A3B871515D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB6D8A14-F947-4667-B2E5-719AB70BA8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6D8A14-F947-4667-B2E5-719AB70BA8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6D8A14-F947-4667-B2E5-719AB70BA8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6D8A14-F947-4667-B2E5-719AB70BA8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB66C8F8-841D-4A10-9D3A-5112EDDEFB31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB66C8F8-841D-4A10-9D3A-5112EDDEFB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB66C8F8-841D-4A10-9D3A-5112EDDEFB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB66C8F8-841D-4A10-9D3A-5112EDDEFB31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
