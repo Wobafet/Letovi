@@ -1,0 +1,64 @@
+﻿<div class="d-flex p-2 justify-content-center ">
+    <form  method="post">
+        
+        <div class="row">
+            <div class="col">
+                Pocetna destinacija:
+                <select name="MestoPolaska"
+                        id="mestoPolaska"
+                        class="form-control">
+                    <option value="Beograd">Beograd</option>
+                    <option value="Nis">Nis</option>
+                    <option value="Kraljevo">Kraljevo</option>
+                    <option value="Pristina">Pristina</option>
+                </select>
+            </div>
+           
+            <div class="col">
+                Kranja destinacija:
+                <select name="MestoDolaska"
+                        id="mestoDolaska"
+                        class="form-control">
+                    <option value="Beograd">Beograd</option>
+                    <option value="Nis">Nis</option>
+                    <option value="Kraljevo">Kraljevo</option>
+                    <option value="Pristina">Pristina</option>
+                </select>
+
+                    @*<input type="text" value="{{ $schedule->endDes }}" class="form-control" disabled id="">*@
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col">
+                Broj presedanja:
+                <input type="text" name="BrojPresedanja" class="form-control" id="">
+
+            </div>
+
+            <div class="col">
+                Broj mesta:
+                <input type="text" name="BrojMesta" class="form-control" id="">
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col">
+                Datum leta:
+                <input type="datetime" name="Datum" class="form-control" id="">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <input type="submit" value="Kreiraj let" class="btn btn-success form-control">
+
+            </div>
+        </div>
+
+    </form>
+</div>

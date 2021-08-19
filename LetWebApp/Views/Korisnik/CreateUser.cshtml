@@ -1,20 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
+    Layout = "_LayoutAdministrator";
+}
+@model Korisnik
+
+@if (!(Model is null))
+{
+    <script>alert("@Model.TipKorisnika" +" uspesno dodat");</script>
 }
 <form method="post" asp-controller="Korisnik" asp-action="CreateUser">
     <div class="form-group">
         <input type="text" class="form-control" placeholder="Email" name="Email" />
     </div>
+
     <div class="form-group">
         <input type="password" class="form-control" placeholder="Sifra" name="Sifra" />
     </div>
+
+    <select name="TipKorisnika"
+            id="tipKorisnika"
+            class="form-control">
+        <option value="Agent">Agent</option>
+        <option value="Posetilac">Posetilac</option>
+    </select>
+
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Log in" />
     </div>
-     <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Log in" />
-    </div>
+
 
 </form>

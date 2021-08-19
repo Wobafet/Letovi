@@ -24,7 +24,13 @@ namespace LetWebApp.Controllers
         }
        public IActionResult CreateUser()
         {
-            return View("CreateUser");
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateUser(Korisnik korisnik)
+        {
+            servis.AddUser(korisnik);
+            return View(korisnik);
         }
     
        

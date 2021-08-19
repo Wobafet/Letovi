@@ -18,7 +18,7 @@ namespace BiznisLogika.Klase
             this.uow = uow;
         }
 
-        public IUnitOfWork uow { get; set; }
+        private IUnitOfWork uow { get; set; }
 
         public TipKorisnika SignIn(Korisnik  korisnik)
         {
@@ -30,6 +30,12 @@ namespace BiznisLogika.Klase
 
             return korisnik1.TipKorisnika;
 
+        }
+
+        public void AddUser(Korisnik korisnik)
+        {
+            uow.RepositoryKorisnik.Add(korisnik);
+            uow.Commit();
         }
     }
 }

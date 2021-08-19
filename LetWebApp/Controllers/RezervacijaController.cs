@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 
 namespace LetWebApp.Controllers
 {
-    public class LetController : Controller
+    public class RezervacijaController : Controller
     {
         public IActionResult Index()
         {
-
-            return View("Letovi",null);
-        } 
-        public IActionResult CreateFlight()
-        {
             return View();
         }
-
-
-
     }
 }

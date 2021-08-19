@@ -14,7 +14,7 @@ namespace Data.Implementacija.Repozitorijumi
         public RepositoryKorisnik(LetContext context) => this.context = context;
         public void Add(Korisnik t)
         {
-            throw new NotImplementedException();
+            context.Korisnik.Add(t);
         }
 
         public Korisnik Find(Predicate<Korisnik> p)
