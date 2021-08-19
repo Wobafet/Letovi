@@ -1,6 +1,15 @@
-﻿<div class="d-flex p-2 justify-content-center ">
-    <form  method="post">
-        
+﻿@{
+    Layout = "_LayoutAgent";
+}
+@model Let
+@if (!(Model is null))
+{
+    <script>alert("Let uspesno dodat");</script>
+
+}
+<div class="d-flex p-2 justify-content-center ">
+    <form method="post" asp-controller="Let" asp-action="CreateFlight">
+
         <div class="row">
             <div class="col">
                 Pocetna destinacija:
@@ -13,7 +22,7 @@
                     <option value="Pristina">Pristina</option>
                 </select>
             </div>
-           
+
             <div class="col">
                 Kranja destinacija:
                 <select name="MestoDolaska"
@@ -25,7 +34,7 @@
                     <option value="Pristina">Pristina</option>
                 </select>
 
-                    @*<input type="text" value="{{ $schedule->endDes }}" class="form-control" disabled id="">*@
+                @*<input type="text" value="{{ $schedule->endDes }}" class="form-control" disabled id="">*@
 
             </div>
         </div>
@@ -48,12 +57,13 @@
 
             <div class="col">
                 Datum leta:
-                <input type="datetime" name="Datum" class="form-control" id="">
-
+                @*<input type="date" name="Datum" class="form-control" id="">*@
+                <input type="date" id="start" name="Datum"
+                       min="2021-01-01">
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="margin-top:4px">
             <div class="col">
                 <input type="submit" value="Kreiraj let" class="btn btn-success form-control">
 

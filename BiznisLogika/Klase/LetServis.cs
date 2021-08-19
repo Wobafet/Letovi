@@ -1,5 +1,6 @@
 ﻿using BiznisLogika.Interfejsi;
 using Data.UnitOfWork;
+using Domen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,17 @@ namespace BiznisLogika.Klase
             this.uow = uow;
         }
 
-        public IUnitOfWork uow { get; set; }
+        private IUnitOfWork uow { get; set; }
+
+        public void Add(Let t)
+        {
+            uow.RepositoryLet.Add(t);
+            uow.Commit();
+        }
+
+        public List<Let> GetAll()
+        {
+            return uow.RepositoryLet.FindAll();
+        }
     }
 }

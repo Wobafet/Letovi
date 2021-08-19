@@ -1,7 +1,9 @@
 ﻿using BiznisLogika.Klase;
 using Data.UnitOfWork;
 using Domen;
+using LetWebApp.Filteri;
 using LetWebApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace LetWebApp.Controllers
 {
+    [LoggedUserFillter]
     public class KorisnikController : Controller
     {
         private KorisnikServis servis;
@@ -29,7 +32,7 @@ namespace LetWebApp.Controllers
         [HttpPost]
         public IActionResult CreateUser(Korisnik korisnik)
         {
-            servis.AddUser(korisnik);
+            servis.Add(korisnik);
             return View(korisnik);
         }
     
@@ -43,11 +46,13 @@ namespace LetWebApp.Controllers
                 switch (tip)
                 {
                     case TipKorisnika.Administrator:
+                        HttpContext.Session.SetInt32("tipKorisnika",0);
 
-                        return RedirectToAction("Index","Let");
+                        return RedirectToAction("ShowFlights", "Let");
                     case TipKorisnika.Agent:
 
-                        return View("Agent");
+                        HttpContext.Session.SetInt32("tipKorisnika",1);
+                        return RedirectToAction("CreateFlight","Let");
 
                     case TipKorisnika.Posetilac:
 

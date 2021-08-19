@@ -14,7 +14,7 @@ namespace Data.Implementacija.Repozitorijumi
         public RepositoryLet(LetContext context) => this.context = context;
         public void Add(Let t)
         {
-            context.Add(t);
+            context.Let.Add(t);
         }
 
         public Let Find(Predicate<Let> p)
@@ -24,7 +24,7 @@ namespace Data.Implementacija.Repozitorijumi
 
         public List<Let> FindAll()
         {
-            throw new NotImplementedException();
+            return context.Let.ToList();
         }
     }
 }

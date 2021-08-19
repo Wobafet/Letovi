@@ -32,10 +32,15 @@ namespace BiznisLogika.Klase
 
         }
 
-        public void AddUser(Korisnik korisnik)
+        public void Add(Korisnik t)
         {
-            uow.RepositoryKorisnik.Add(korisnik);
+            uow.RepositoryKorisnik.Add(t);
             uow.Commit();
+        }
+
+        public List<Korisnik> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

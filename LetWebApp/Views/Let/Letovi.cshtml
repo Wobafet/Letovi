@@ -1,7 +1,64 @@
 ﻿
-@model Let
-@{ 
-    Layout = "_LayoutAdministrator";
+@model List<Let>
+@{
+    if (ViewBag.TipKorisnika == 0)
+        Layout = "_LayoutAdministrator";
+    else
+        Layout = "_LayoutAgent";
+
 }
 
 <h1>Letovi</h1>
+
+<table style="border:1px solid black" id="" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Pocetna destinacija</th>
+            <th>Krajnja destinacija</th>
+            <th>Broj mesta</th>
+            <th>Broj presedanja</th>
+            <th>Datum</th>
+            @if (ViewBag.TipKorisnika == 0)
+            {
+            <th>Deaktiviraj</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var let in Model)
+        {
+            if (let.BrojMesta < 5)
+            {
+        <tr style="background-color:yellow">
+            <td>@let.MestoPolaska</td>
+            <td>@let.MestoDolaska</td>
+            <td>@let.BrojMesta</td>
+            <td>@let.BrojPresedanja</td>
+            <td>@let.Datum</td>
+            @if (ViewBag.TipKorisnika == 0)
+            {
+                <td><span class="btn btn-link" id="@let.LetId">Cancel</span></td>
+            }
+        </tr>
+
+            }
+            else
+            {
+    <tr>
+        <td>@let.MestoPolaska</td>
+        <td>@let.MestoDolaska</td>
+        <td>@let.BrojMesta</td>
+        <td>@let.BrojPresedanja</td>
+        <td>@let.Datum</td>
+        @if (ViewBag.TipKorisnika == 0)
+        {
+            <td><span class="btn btn-link" id="@let.LetId">Cancel</span></td>
+        }
+    </tr>
+
+            }
+        }
+        
+    </tbody>
+</table>
+

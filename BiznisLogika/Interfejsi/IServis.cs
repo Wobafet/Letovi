@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BiznisLogika
 {
-    public interface IServis
+    public interface IServis<T>
     {
-
+        void Add(T t);
+        List<T> GetAll();
     }
 }
