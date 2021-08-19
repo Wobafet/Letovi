@@ -1,0 +1,114 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    Layout = "_LayoutKorisnik";
+}
+
+
+<div class="d-flex p-2 justify-content-center ">
+
+        <div class="row">
+            <div class="col">
+                Pocetna destinacija:
+                <select name="MestoPolaska"
+                        id="mestoPolaska"
+                        class="form-control">
+                    <option value="Mesto">Izaberite mesto</option>
+                    <option value="Beograd">Beograd</option>
+                    <option value="Nis">Nis</option>
+                    <option value="Kraljevo">Kraljevo</option>
+                    <option value="Pristina">Pristina</option>
+                </select>
+            </div>
+
+            <div class="col">
+                Kranja destinacija:
+                <select name="MestoDolaska"
+                        id="mestoDolaska"
+                        class="form-control">
+                    <option value="Mesto">Izaberite mesto</option>
+                    <option value="Beograd">Beograd</option>
+                    <option value="Nis">Nis</option>
+                    <option value="Kraljevo">Kraljevo</option>
+                    <option value="Pristina">Pristina</option>
+                </select>
+
+
+            </div>
+        </div>
+
+        <table style="border:1px solid black" id="" class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>Pocetna destinacija</th>
+                    <th>Krajnja destinacija</th>
+                    <th>Broj presedanja</th>
+                    <th>Datum</th>
+                    <th>Broj mesta</th>
+                    <th>Rezervisi</th>
+                    
+                </tr>
+            </thead>
+
+            <tbody>
+
+            </tbody>
+        </table>
+</div>
+
+<script>
+
+    $('select').on('change', function (e) {
+
+        var polazak = document.getElementById("mestoPolaska");
+        var dolazak = document.getElementById("mestoDolaska");
+
+        var polazakVal = polazak.value;
+        var dolazakVal = dolazak.value;
+
+        if (polazakVal == 'Mesto' || dolazakVal == 'Mesto')
+            return;
+
+      $.ajax({
+          url: '@Url.ActionLink("GetFlightsByCriteria", "Let")',
+          data: {
+              mestoPolaska: polazakVal,
+              mestoDolaska: dolazakVal
+          },
+            method: "get",
+            success: function (data) {
+
+                $("tbody tr").remove();
+                for (var i = 0; i < data.length; i++) {
+
+                    $("tbody").append("<tr id=" + data[i].letId + ">" +
+                        "<td>" + data[i].mestoPolaska + "</td>" +
+                        "<td>" + data[i].mestoDolaska + "</td>" +
+                        "<td>" + data[i].brojPresedanja + "</td>" +
+                        "<td>" + data[i].datum + "</td>" +
+                        "<td><input type='text'/></td>" +
+                        "<td>  <button onclick='reservation(this.id)' id="+data[i].letId+"> Rezervisi</button ></td>"+
+                        + "</tr>");
+                }
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+
+
+       
+    });
+
+</script>
+
+<script>
+    function reservation(id) {
+        alert(id);
+    }
+
+
+</script>

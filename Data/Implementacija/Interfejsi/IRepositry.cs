@@ -13,5 +13,7 @@ namespace Data.Implementacija.Interfejsi
         T Find(Predicate<T> p);
 
         List<T> FindAll();
+
+        List<T> GetByCondition(Predicate<T> condition);
     }
 }

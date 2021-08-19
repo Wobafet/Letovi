@@ -39,7 +39,13 @@ namespace LetWebApp.Controllers
             servis.Add(let);
             return View(let);
         }
+        [HttpGet]
+       public List<Let> GetFlightsByCriteria(Mesto mestoPolaska,Mesto mestoDolaska)
+        {
+            var letovi = servis.GetByCondition(l => l.MestoPolaska == mestoPolaska && l.MestoDolaska == mestoDolaska);
 
+            return letovi;
+        }
 
 
     }

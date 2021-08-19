@@ -26,5 +26,10 @@ namespace Data.Implementacija.Repozitorijumi
         {
             throw new NotImplementedException();
         }
+
+        public List<Korisnik> GetByCondition(Predicate<Korisnik> condition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

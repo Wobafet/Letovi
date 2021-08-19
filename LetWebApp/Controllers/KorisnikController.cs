@@ -56,7 +56,7 @@ namespace LetWebApp.Controllers
 
                     case TipKorisnika.Posetilac:
 
-                        return View("Posetilac");
+                        return RedirectToAction("Reservation","Rezervacija");
                     default:
 
                         return View();

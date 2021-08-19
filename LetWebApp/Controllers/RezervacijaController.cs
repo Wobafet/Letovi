@@ -8,7 +8,7 @@ namespace LetWebApp.Controllers
 {
     public class RezervacijaController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Reservation()
         {
             return View();
         }

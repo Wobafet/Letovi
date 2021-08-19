@@ -28,5 +28,10 @@ namespace BiznisLogika.Klase
         {
             return uow.RepositoryLet.FindAll();
         }
+
+        public List<Let> GetByCondition(Predicate<Let> condition)
+        {
+            return uow.RepositoryLet.GetByCondition(condition);
+        }
     }
 }

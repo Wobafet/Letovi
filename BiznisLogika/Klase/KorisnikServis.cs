@@ -42,5 +42,10 @@ namespace BiznisLogika.Klase
         {
             throw new NotImplementedException();
         }
+
+        public List<Korisnik> GetByCondition(Predicate<Korisnik> condition)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

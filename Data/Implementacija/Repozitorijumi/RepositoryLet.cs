@@ -26,5 +26,10 @@ namespace Data.Implementacija.Repozitorijumi
         {
             return context.Let.ToList();
         }
+
+        public List<Let> GetByCondition(Predicate<Let> condition)
+        {
+            return context.Let.ToList().FindAll(condition);
+        }
     }
 }

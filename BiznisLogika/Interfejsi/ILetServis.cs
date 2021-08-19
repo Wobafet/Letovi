@@ -9,5 +9,6 @@ namespace BiznisLogika.Interfejsi
 {
     public interface ILetServis:IServis<Let>
     {
+      
     }
 }
