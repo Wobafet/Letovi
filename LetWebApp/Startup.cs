@@ -1,3 +1,4 @@
+using LetWebApp.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,7 @@ namespace LetWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSignalR();
 
             services.AddSession(option =>
             {
@@ -57,6 +59,8 @@ namespace LetWebApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Korisnik}/{action=SignIn}/{id?}");
+
+                endpoints.MapHub<LetHub>("/lethub");
             });
         }
     }

@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "_LayoutAgent";
+}
+
+@model List<Rezervacija>
+
+
+<table style="border:1px solid black" id="" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Email korisnika</th>
+            <th>Pocetna destinacija</th>
+            <th>Krajnja destinacija</th>
+            <th>Broj mesta</th>
+            <th>Datum</th>
+            <th>Odobri</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var let in Model)
+        {
+            <tr>
+                <td>@let.Korisnik.Email</td>
+                <td>@let.Let.MestoDolaska</td>
+                <td>@let.Let.MestoPolaska</td>
+                <td>@let.BrojMesta</td>
+                <td>@let.Let.Datum.ToShortDateString()</td>
+                <td><span class="btn btn-link" onclick="allowReservation(@let.LetId,@let.KorisnikId)">Odobri</span></td>
+
+            </tr>
+
+        }
+
+
+    </tbody>
+</table>
+
+<script>
+    function allowReservation(letId, korisnikId) {
+
+
+        $.ajax({
+            url: '@Url.ActionLink("AllowReservation","Rezervacija")',
+            data: {
+                letId: letId,
+                korisnikId: korisnikId
+            },
+            method: "put",
+            success: function (message) {
+
+                alert("Odobrena rezervacija");
+
+
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+
+        }
+
+</script>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/let.js"></script>

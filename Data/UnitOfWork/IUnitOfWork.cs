@@ -11,6 +11,7 @@ namespace Data.UnitOfWork
     {
         public IKorisnik  RepositoryKorisnik { get; set; }
         public ILet RepositoryLet { get; set; }
+        public IRezervacija RepositoryRezervacija { get; set; }
         public void Commit();
     }
 }

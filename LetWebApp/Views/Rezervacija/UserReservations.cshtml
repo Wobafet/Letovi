@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "_LayoutKorisnik";
+}
+
+@model List<Rezervacija>
+
+
+<table style="border:1px solid black" id="" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Pocetna destinacija</th>
+            <th>Krajnja destinacija</th>
+            <th>Broj mesta</th>
+            <th>Broj presedanja</th>
+            <th>Datum</th>
+            <th>Status</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var let in Model)
+        {
+                <tr>
+                    <td>@let.Let.MestoDolaska</td>
+                    <td>@let.Let.MestoPolaska</td>
+                    <td>@let.BrojMesta</td>
+                    <td>@let.Let.BrojPresedanja</td>
+                    <td>@let.Let.Datum.ToShortDateString()</td>
+                    <td>@let.StatusLeta</td>
+                   
+                </tr>
+
+            }
+        
+
+    </tbody>
+</table>
+

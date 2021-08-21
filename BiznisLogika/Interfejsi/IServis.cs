@@ -7,7 +7,8 @@ namespace BiznisLogika
     {
         void Add(T t);
         List<T> GetAll();
-
         List<T> GetByCondition(Predicate<T> condition);
+
+        T Find(Predicate<T> condition);
     }
 }

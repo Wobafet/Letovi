@@ -19,7 +19,7 @@ namespace Data.Implementacija.Repozitorijumi
 
         public Let Find(Predicate<Let> p)
         {
-            throw new NotImplementedException();
+            return context.Let.ToList().Find(p);
         }
 
         public List<Let> FindAll()

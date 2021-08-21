@@ -33,6 +33,9 @@ namespace Domen
                 .HasOne(r => r.Let)
                 .WithMany(r => r.Rezervacija)
                 .HasForeignKey(r => r.LetId);
+
+            modelBuilder.Entity<Let>().HasCheckConstraint("NotLessThenZero", "[BrojMesta] >= 0");
+
         }
     }
 }

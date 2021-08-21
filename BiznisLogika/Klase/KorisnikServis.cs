@@ -20,7 +20,7 @@ namespace BiznisLogika.Klase
 
         private IUnitOfWork uow { get; set; }
 
-        public TipKorisnika SignIn(Korisnik  korisnik)
+        public Korisnik SignIn(Korisnik  korisnik)
         {
 
             Korisnik korisnik1 = uow.RepositoryKorisnik.Find(k => korisnik.Email == k.Email && korisnik.Sifra == k.Sifra);
@@ -28,7 +28,7 @@ namespace BiznisLogika.Klase
             if (korisnik1 is null)
                 throw new Exception("Wrong credentials");
 
-            return korisnik1.TipKorisnika;
+            return korisnik1;
 
         }
 
@@ -44,6 +44,11 @@ namespace BiznisLogika.Klase
         }
 
         public List<Korisnik> GetByCondition(Predicate<Korisnik> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Korisnik Find(Predicate<Korisnik> condition)
         {
             throw new NotImplementedException();
         }

@@ -18,9 +18,12 @@ namespace Data.UnitOfWork
             this.context = context;
             RepositoryKorisnik = new RepositoryKorisnik(context);
             RepositoryLet = new RepositoryLet(context);
+            RepositoryRezervacija = new RepositoryRezervacija(context);
         }
         public IKorisnik RepositoryKorisnik { get; set; }
         public ILet RepositoryLet { get; set; }
+        public IRezervacija RepositoryRezervacija { get ; set; }
+
         public void Commit()
         {
             context.SaveChanges();

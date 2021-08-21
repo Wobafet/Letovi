@@ -5,6 +5,8 @@ using LetWebApp.Filteri;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,8 +44,10 @@ namespace LetWebApp.Controllers
         [HttpGet]
        public List<Let> GetFlightsByCriteria(Mesto mestoPolaska,Mesto mestoDolaska)
         {
-            var letovi = servis.GetByCondition(l => l.MestoPolaska == mestoPolaska && l.MestoDolaska == mestoDolaska);
+            var letovi = servis.GetByCondition(l => l.MestoPolaska == mestoPolaska && l.MestoDolaska == mestoDolaska
+                                                && l.BrojMesta>0);
 
+            
             return letovi;
         }
 

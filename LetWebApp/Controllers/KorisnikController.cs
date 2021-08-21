@@ -42,8 +42,8 @@ namespace LetWebApp.Controllers
         {
             try
             {
-                TipKorisnika tip = servis.SignIn(korisnik);
-                switch (tip)
+                Korisnik korisnik1 = servis.SignIn(korisnik);
+                switch (korisnik1.TipKorisnika)
                 {
                     case TipKorisnika.Administrator:
                         HttpContext.Session.SetInt32("tipKorisnika",0);
@@ -56,6 +56,7 @@ namespace LetWebApp.Controllers
 
                     case TipKorisnika.Posetilac:
 
+                        HttpContext.Session.SetInt32("korisnikId",korisnik1.KorisnikId);
                         return RedirectToAction("Reservation","Rezervacija");
                     default:
 

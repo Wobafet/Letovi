@@ -4,14 +4,16 @@ using Domen;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Domen.Migrations
 {
     [DbContext(typeof(LetContext))]
-    partial class LetContextModelSnapshot : ModelSnapshot
+    [Migration("20210820232040_dodatoOgranicenje")]
+    partial class dodatoOgranicenje
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,16 +79,13 @@ namespace Domen.Migrations
                     b.Property<int>("KorisnikId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RezervacijaId")
-                        .HasColumnType("int");
-
                     b.Property<int>("BrojMesta")
                         .HasColumnType("int");
 
                     b.Property<int>("StatusLeta")
                         .HasColumnType("int");
 
-                    b.HasKey("LetId", "KorisnikId", "RezervacijaId");
+                    b.HasKey("LetId", "KorisnikId");
 
                     b.HasIndex("KorisnikId");
 

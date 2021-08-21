@@ -9,56 +9,67 @@
 
 <div class="d-flex p-2 justify-content-center ">
 
-        <div class="row">
-            <div class="col">
-                Pocetna destinacija:
-                <select name="MestoPolaska"
-                        id="mestoPolaska"
-                        class="form-control">
-                    <option value="Mesto">Izaberite mesto</option>
-                    <option value="Beograd">Beograd</option>
-                    <option value="Nis">Nis</option>
-                    <option value="Kraljevo">Kraljevo</option>
-                    <option value="Pristina">Pristina</option>
-                </select>
-            </div>
+    <div class="row">
+        <div class="col">
+            Pocetna destinacija:
+            <select name="MestoPolaska"
+                    id="mestoPolaska"
+                    class="form-control">
+                <option value="Mesto">Izaberite mesto</option>
+                <option value="Beograd">Beograd</option>
+                <option value="Nis">Nis</option>
+                <option value="Kraljevo">Kraljevo</option>
+                <option value="Pristina">Pristina</option>
+            </select>
+        </div>
 
-            <div class="col">
-                Kranja destinacija:
-                <select name="MestoDolaska"
-                        id="mestoDolaska"
-                        class="form-control">
-                    <option value="Mesto">Izaberite mesto</option>
-                    <option value="Beograd">Beograd</option>
-                    <option value="Nis">Nis</option>
-                    <option value="Kraljevo">Kraljevo</option>
-                    <option value="Pristina">Pristina</option>
-                </select>
+        <div class="col">
+            Kranja destinacija:
+            <select name="MestoDolaska"
+                    id="mestoDolaska"
+                    class="form-control">
+                <option value="Mesto">Izaberite mesto</option>
+                <option value="Beograd">Beograd</option>
+                <option value="Nis">Nis</option>
+                <option value="Kraljevo">Kraljevo</option>
+                <option value="Pristina">Pristina</option>
+            </select>
 
 
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+
+            <div id="check" hidden="hidden">
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1">Bez presedanja</label>
             </div>
         </div>
 
-        <table style="border:1px solid black" id="" class="table table-bordered table-striped">
 
-            <thead>
-                <tr>
-                    <th>Pocetna destinacija</th>
-                    <th>Krajnja destinacija</th>
-                    <th>Broj presedanja</th>
-                    <th>Datum</th>
-                    <th>Broj mesta</th>
-                    <th>Rezervisi</th>
-                    
-                </tr>
-            </thead>
+        <div class="col">
+            <table style="border:1px solid black" id="" class="table table-bordered table-striped">
 
-            <tbody>
+                <thead>
+                    <tr>
+                        <th>Pocetna destinacija</th>
+                        <th>Krajnja destinacija</th>
+                        <th>Broj presedanja</th>
+                        <th>Datum</th>
+                        <th>Broj mesta</th>
+                        <th>Rezervisi</th>
 
-            </tbody>
-        </table>
-</div>
+                    </tr>
+                </thead>
 
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
 <script>
 
     $('select').on('change', function (e) {
@@ -93,6 +104,7 @@
                         "<td>  <button onclick='reservation(this.id)' id="+data[i].letId+"> Rezervisi</button ></td>"+
                         + "</tr>");
                 }
+                $("#check").removeAttr("hidden");
             },
             error: function () {
                 alert("Error!");
@@ -107,8 +119,63 @@
 
 <script>
     function reservation(id) {
-        alert(id);
+        var row = $(`#${id}`).closest('tr');
+       
+        var brojMesta = row.find('td:eq(4)').children('input').val();
+
+        $.ajax({
+            url: '@Url.ActionLink("FlightReserve","Rezervacija")',
+            data: {
+                id: id,
+                brojMesta: brojMesta
+            },
+            method: "post",
+            success: function (message) {
+                if (message == null) {
+
+                    alert("Uspesno rezervisan let");
+                }
+                else {
+                    alert(message);
+
+                }
+                window.location.reload();
+            },
+            error: function () {
+                alert("Error!");
+            }
+
+        });
     }
 
+    
+    $("input[type=checkbox]").on("click", function (e) {
+        var n = $("input:checked").length;
+        if (n > 0) {
+            bezPresedenja();
+        }
+        else {
+            sviLetovi();
+        }
+    });
 
+    function bezPresedenja() {
+        $("tbody tr").each(function () {
+            var row = $(this);
+            var brojPresedanja = row.find('td:eq(2)').text();
+            if (brojPresedanja > 0)
+                row.attr("hidden", true);
+                           
+        })
+      
+    }
+
+    function sviLetovi() {
+        $("tbody tr").each(function () {
+            var row = $(this);
+
+            row.removeAttr("hidden");                           
+        })
+      
+    }
 </script>

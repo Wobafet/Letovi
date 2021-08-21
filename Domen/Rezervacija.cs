@@ -13,5 +13,6 @@ namespace Domen
         public int LetId { get; set; }
         public Let Let{ get; set; }
         public StatusLeta StatusLeta { get; set; }
+        public int BrojMesta { get; set; }
     }
 }

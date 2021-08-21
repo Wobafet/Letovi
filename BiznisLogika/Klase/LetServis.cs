@@ -24,6 +24,11 @@ namespace BiznisLogika.Klase
             uow.Commit();
         }
 
+        public Let Find(Predicate<Let> condition)
+        {
+            return uow.RepositoryLet.Find(condition);
+        }
+
         public List<Let> GetAll()
         {
             return uow.RepositoryLet.FindAll();
