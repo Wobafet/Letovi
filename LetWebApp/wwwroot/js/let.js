@@ -6,8 +6,6 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/lethub").build();
 connection.on("addNewReservation", function (rez) {
 
 
-    console.log(rez);
-
     //$("tbody").append("<tr>" +
     //    "<td>" + rez.korisnik.email+ "</td>" +
     //    "<td>" + rez.let.mestoPolaska + "</td>" +
@@ -26,6 +24,19 @@ connection.on("addNewReservation", function (rez) {
         "<td><span class='btn btn - link' onclick='allowReservation("+rez.letId+","+rez.korisnikId+")'>Odobri</span></td>" +
         + "</tr>");
 });
+
+
+connection.on("updateStatus", function (letId, korisnikId) {
+
+    var tekst = letId + '' + korisnikId;
+    var row = $(`#${tekst}`);
+
+    console.log(tekst);
+    row.find('td:eq(5)').html("Odobren");
+
+});
+
+
 connection.on("Poruka", function (rezervacija) {
 
     console.log(rezervacija);

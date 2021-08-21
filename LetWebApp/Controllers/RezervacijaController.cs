@@ -89,6 +89,7 @@ namespace LetWebApp.Controllers
        public void  AllowReservation(int letId,int korisnikId)
         {
             servis.ChangeStatus(letId, korisnikId);
+            context.Clients.All.SendAsync("updateStatus",letId,korisnikId);
         }
     }
 }
