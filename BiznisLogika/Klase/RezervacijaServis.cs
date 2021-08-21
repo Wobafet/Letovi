@@ -34,6 +34,14 @@ namespace BiznisLogika.Klase
             uow.Commit();
         }
 
+        public void CheckDate(int id)
+        {
+            var let = uow.RepositoryLet.Find(l => l.LetId == id);
+
+            if (DateTime.Now.AddDays(3) > let.Datum)
+                throw new DateException("Let je za manje od 3 dana");
+        }
+
         public List<Rezervacija> GetAll()
         {
             return uow.RepositoryRezervacija.FindAll();

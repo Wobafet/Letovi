@@ -32,18 +32,18 @@ namespace LetWebApp.Controllers
           int ?korisnikId =  HttpContext.Session.GetInt32("korisnikId");
             try
             {
+                servis.CheckDate(id);
                 Rezervacija rezervacija = new Rezervacija()
                 {
                     KorisnikId = (int)korisnikId,
                     LetId = id,
                     StatusLeta = StatusLeta.NaCekanju,
-                    BrojMesta=brojMesta
+                    BrojMesta = brojMesta
                 };
 
                 servis.Add(rezervacija);
                 Rezervacija rez = servis.Find(r => r.KorisnikId == rezervacija.KorisnikId && r.LetId == rezervacija.LetId);
-                rez.Korisnik.Rezervacija.Clear();
-                rez.Let.Rezervacija.Clear();
+
                 var noviObjekat = new
                 {
                     korisnikId = rez.KorisnikId,
@@ -54,10 +54,14 @@ namespace LetWebApp.Controllers
                     datum = rez.Let.Datum.ToShortDateString(),
                     email = rez.Korisnik.Email
                 };
-                context.Clients.All.SendAsync("addNewReservation",noviObjekat);
+                context.Clients.All.SendAsync("addNewReservation", noviObjekat);
                 return null;
             }
-            catch(ReservationException re)
+            catch (DateException de)
+            {
+                return de.Message;
+            }
+            catch (ReservationException re)
             {
                 return re.Message;
             }
