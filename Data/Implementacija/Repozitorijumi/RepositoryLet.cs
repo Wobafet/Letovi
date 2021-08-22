@@ -17,6 +17,11 @@ namespace Data.Implementacija.Repozitorijumi
             context.Let.Add(t);
         }
 
+        public void Delete(Let t)
+        {
+            context.Let.Remove(t);
+        }
+
         public Let Find(Predicate<Let> p)
         {
             return context.Let.ToList().Find(p);

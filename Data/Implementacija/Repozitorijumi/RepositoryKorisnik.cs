@@ -17,6 +17,11 @@ namespace Data.Implementacija.Repozitorijumi
             context.Korisnik.Add(t);
         }
 
+        public void Delete(Korisnik t)
+        {
+            throw new NotImplementedException();
+        }
+
         public Korisnik Find(Predicate<Korisnik> p)
         {
             return context.Korisnik.ToList().Find(p);

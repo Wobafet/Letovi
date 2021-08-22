@@ -20,13 +20,14 @@
     <tbody>
         @foreach (var let in Model)
         {
-            <tr id="@let.LetId@let.KorisnikId">
+           
+            <tr id="@let.LetId">
                 <td>@let.Let.MestoPolaska</td>
                 <td>@let.Let.MestoDolaska</td>
                 <td>@let.BrojMesta</td>
                 <td>@let.Let.BrojPresedanja</td>
                 <td>@let.Let.Datum.ToShortDateString()</td>
-                <td>@let.StatusLeta</td>
+                <td id="@(let.LetId*10)@let.KorisnikId">@let.StatusLeta</td>
 
             </tr>
 

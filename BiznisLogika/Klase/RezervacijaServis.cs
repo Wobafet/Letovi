@@ -23,14 +23,10 @@ namespace BiznisLogika.Klase
             var let = uow.RepositoryLet.Find(l => l.LetId == t.LetId);
             if (let.BrojMesta - t.BrojMesta < 0)
                 throw new ReservationException("Nema dovoljno mesta !");
-
+           
+            uow.RepositoryRezervacija.Add(t);
             let.BrojMesta -= t.BrojMesta;
-            var rezervacija = uow.RepositoryRezervacija.Find(r => r.LetId == t.LetId && r.KorisnikId == t.KorisnikId);
-            if (rezervacija is null)
-                uow.RepositoryRezervacija.Add(t);
-            else
-                rezervacija.BrojMesta += t.BrojMesta;
-
+          
             uow.Commit();
         }
 
@@ -62,6 +58,11 @@ namespace BiznisLogika.Klase
         public Rezervacija Find(Predicate<Rezervacija> condition)
         {
             return uow.RepositoryRezervacija.Find(condition);
+        }
+
+        public void Delete(Rezervacija t)
+        {
+            throw new NotImplementedException();
         }
     }
 }

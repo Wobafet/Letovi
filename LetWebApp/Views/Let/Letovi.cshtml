@@ -20,7 +20,7 @@
             <th>Datum</th>
             @if (ViewBag.TipKorisnika == 0)
             {
-            <th>Deaktiviraj</th>
+                <th>Deaktiviraj</th>
             }
         </tr>
     </thead>
@@ -29,36 +29,62 @@
         {
             if (let.BrojMesta < 5)
             {
-        <tr style="background-color:yellow">
-            <td>@let.MestoPolaska</td>
-            <td>@let.MestoDolaska</td>
-            <td>@let.BrojMesta</td>
-            <td>@let.BrojPresedanja</td>
-            <td>@let.Datum</td>
-            @if (ViewBag.TipKorisnika == 0)
-            {
-                <td><span class="btn btn-link" id="@let.LetId">Cancel</span></td>
-            }
-        </tr>
+
+                <tr style="background-color:yellow" id="@let.LetId">
+                    <td>@let.MestoPolaska</td>
+                    <td>@let.MestoDolaska</td>
+                    <td>@let.BrojMesta</td>
+                    <td>@let.BrojPresedanja</td>
+                    <td>@let.Datum.ToShortDateString()</td>
+                    @if (ViewBag.TipKorisnika == 0)
+                    {
+                        <td><span class="btn btn-link" id="@let.LetId" onclick="deleteFlight(this.id)">Otkazi let</span></td>
+                    }
+                </tr>
 
             }
             else
             {
-    <tr>
-        <td>@let.MestoPolaska</td>
-        <td>@let.MestoDolaska</td>
-        <td>@let.BrojMesta</td>
-        <td>@let.BrojPresedanja</td>
-        <td>@let.Datum.Date.ToShortDateString()</td>
-        @if (ViewBag.TipKorisnika == 0)
-        {
-            <td><span class="btn btn-link" id="@let.LetId">Cancel</span></td>
-        }
-    </tr>
+                <tr id="@let.LetId">
+                    <td>@let.MestoPolaska</td>
+                    <td>@let.MestoDolaska</td>
+                    <td>@let.BrojMesta</td>
+                    <td>@let.BrojPresedanja</td>
+                    <td>@let.Datum.Date.ToShortDateString()</td>
+                    @if (ViewBag.TipKorisnika == 0)
+                    {
+                        <td><span class="btn btn-link" id="@let.LetId" onclick="deleteFlight(this.id)">Otkazi let</span></td>
+                    }
+                </tr>
 
             }
         }
-        
+
     </tbody>
 </table>
 
+<script>
+
+    function deleteFlight(id) {
+
+        $.ajax({
+            url: '@Url.ActionLink("DeleteFlight","Let")',
+            data: {
+                letId: id,
+
+            },
+            method: "delete",
+            success: function (message) {
+
+                alert("Izbrisan let");
+            },
+            error: function () {
+                alert("Error!");
+            }
+        });
+    }
+
+</script>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/let.js"></script>

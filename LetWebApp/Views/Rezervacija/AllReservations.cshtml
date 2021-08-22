@@ -20,7 +20,7 @@
     <tbody>
         @foreach (var let in Model)
         {
-            <tr>
+            <tr id="@let.LetId">
                 <td>@let.Korisnik.Email</td>
                 <td>@let.Let.MestoPolaska</td>
                 <td>@let.Let.MestoDolaska</td>
@@ -64,3 +64,4 @@
 
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/let.js"></script>
+<script src="~/js/rezervacije.js"></script>

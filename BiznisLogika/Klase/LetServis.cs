@@ -24,6 +24,12 @@ namespace BiznisLogika.Klase
             uow.Commit();
         }
 
+        public void Delete(Let t)
+        {
+            uow.RepositoryLet.Delete(t);
+            uow.Commit();
+        }
+
         public Let Find(Predicate<Let> condition)
         {
             return uow.RepositoryLet.Find(condition);

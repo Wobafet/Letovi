@@ -18,6 +18,11 @@ namespace Data.Implementacija.Repozitorijumi
             context.Rezervacija.Add(t);                            
         }
 
+        public void Delete(Rezervacija t)
+        {
+            context.Rezervacija.Remove(t);
+        }
+
         public Rezervacija Find(Predicate<Rezervacija> p)
         {
             return context.Rezervacija.Include(r=>r.Korisnik).Include(r=>r.Let).ToList().Find(p);

@@ -67,7 +67,7 @@ namespace LetWebApp.Controllers
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return $"Vec postoji rezervacija za ovog korisnika za dati let !";
             }
         }
 

@@ -52,5 +52,10 @@ namespace BiznisLogika.Klase
         {
             throw new NotImplementedException();
         }
+
+        public void Delete(Korisnik t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

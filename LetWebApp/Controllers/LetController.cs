@@ -2,7 +2,9 @@
 using Data.UnitOfWork;
 using Domen;
 using LetWebApp.Filteri;
+using LetWebApp.Hubs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,9 +19,10 @@ namespace LetWebApp.Controllers
     {
 
         private LetServis servis;
-
-        public LetController()
+        private IHubContext<LetHub> context;
+        public LetController(IHubContext<LetHub> context)
         {
+            this.context = context;
             servis = new LetServis(new LetUnitOfWork(new LetContext()));
         }
         public IActionResult Index()
@@ -42,15 +45,22 @@ namespace LetWebApp.Controllers
             return View(let);
         }
         [HttpGet]
-       public List<Let> GetFlightsByCriteria(Mesto mestoPolaska,Mesto mestoDolaska)
+        public List<Let> GetFlightsByCriteria(Mesto mestoPolaska,Mesto mestoDolaska)
         {
             var letovi = servis.GetByCondition(l => l.MestoPolaska == mestoPolaska && l.MestoDolaska == mestoDolaska
                                                 && l.BrojMesta>0);
 
-            
             return letovi;
         }
 
+        [HttpDelete]
+        public void DeleteFlight(int letId)
+        {
+            var let = servis.Find(l => l.LetId == letId);
+            servis.Delete(let);
+
+            context.Clients.All.SendAsync("deleteFlight", letId);
+        }
 
     }
 }

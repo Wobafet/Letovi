@@ -70,7 +70,7 @@
             </table>
         </div>
     </div>
-<script>
+    <script>
 
     $('select').on('change', function (e) {
 
@@ -95,11 +95,12 @@
                 $("tbody tr").remove();
                 for (var i = 0; i < data.length; i++) {
 
+                    datum = new Date(data[i].datum).toLocaleDateString();
                     $("tbody").append("<tr id=" + data[i].letId + ">" +
                         "<td>" + data[i].mestoPolaska + "</td>" +
                         "<td>" + data[i].mestoDolaska + "</td>" +
                         "<td>" + data[i].brojPresedanja + "</td>" +
-                        "<td>" + data[i].datum + "</td>" +
+                        "<td>" + datum + "</td>" +
                         "<td><input type='text'/></td>" +
                         "<td>  <button onclick='reservation(this.id)' id="+data[i].letId+"> Rezervisi</button ></td>"+
                         + "</tr>");
@@ -112,15 +113,15 @@
         });
 
 
-       
+
     });
 
-</script>
+    </script>
 
-<script>
+    <script>
     function reservation(id) {
         var row = $(`#${id}`).closest('tr');
-       
+
         var brojMesta = row.find('td:eq(4)').children('input').val();
 
         $.ajax({
@@ -139,7 +140,7 @@
                     alert(message);
 
                 }
-                window.location.reload();
+
             },
             error: function () {
                 alert("Error!");
@@ -148,7 +149,7 @@
         });
     }
 
-    
+
     $("input[type=checkbox]").on("click", function (e) {
         var n = $("input:checked").length;
         if (n > 0) {
@@ -165,17 +166,21 @@
             var brojPresedanja = row.find('td:eq(2)').text();
             if (brojPresedanja > 0)
                 row.attr("hidden", true);
-                           
+
         })
-      
+
     }
 
     function sviLetovi() {
         $("tbody tr").each(function () {
             var row = $(this);
 
-            row.removeAttr("hidden");                           
+            row.removeAttr("hidden");
         })
-      
+
     }
-</script>
+    </script>
+
+
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/let.js"></script>
