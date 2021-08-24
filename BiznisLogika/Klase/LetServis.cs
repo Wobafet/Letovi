@@ -1,4 +1,5 @@
-﻿using BiznisLogika.Interfejsi;
+﻿using BiznisLogika.Exceptions;
+using BiznisLogika.Interfejsi;
 using Data.UnitOfWork;
 using Domen;
 using System;
@@ -20,6 +21,11 @@ namespace BiznisLogika.Klase
 
         public void Add(Let t)
         {
+            if (t.MestoPolaska == t.MestoDolaska)
+                throw new DestinationException("Destinacije moraju biti razlicite");
+            if (t.Datum <= DateTime.Now)
+                throw new DateException("Datum u proslosti !");
+
             uow.RepositoryLet.Add(t);
             uow.Commit();
         }

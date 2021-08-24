@@ -1,4 +1,5 @@
-﻿using BiznisLogika.Klase;
+﻿using BiznisLogika.Exceptions;
+using BiznisLogika.Klase;
 using Data.UnitOfWork;
 using Domen;
 using LetWebApp.Filteri;
@@ -41,7 +42,19 @@ namespace LetWebApp.Controllers
         [HttpPost]
         public IActionResult CreateFlight(Let let)
         {
-            servis.Add(let);
+            try
+            {
+                servis.Add(let);
+            }
+            catch (DestinationException )
+            {
+                let.LetId = -1;
+            }
+            catch (DateException )
+            {
+                let.LetId = -2;
+            }
+
             return View(let);
         }
         [HttpGet]

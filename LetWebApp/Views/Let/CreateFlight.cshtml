@@ -2,10 +2,18 @@
     Layout = "_LayoutAgent";
 }
 @model Let
-@if (!(Model is null))
+             @if(Model!=null&& Model.LetId==-1)
+            {
+                <script>alert("Ne mozete imati isto mesto polaska i dolaska")</script>
+             }
+             else if(Model != null && Model.LetId == -2)
+            {
+
+                <script>alert("Datum ne moze biti u proslosti")</script>
+            }
+else if (Model!=null)
 {
     <script>alert("Let uspesno dodat");</script>
-
 }
 <div class="d-flex p-2 justify-content-center ">
     <form method="post" asp-controller="Let" asp-action="CreateFlight">
@@ -42,13 +50,13 @@
 
             <div class="col">
                 Broj presedanja:
-                <input type="text" name="BrojPresedanja" class="form-control" id="">
+                <input type="text" name="BrojPresedanja" class="form-control" required>
 
             </div>
 
             <div class="col">
                 Broj mesta:
-                <input type="text" name="BrojMesta" class="form-control" id="">
+                <input type="text" name="BrojMesta" class="form-control" required>
 
             </div>
         </div>
@@ -57,7 +65,7 @@
             <div class="col">
                 Datum leta:
                 <input type="date" id="start" name="Datum"
-                       min="2021-08-08">
+                        required>
             </div>
         </div>
 

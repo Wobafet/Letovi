@@ -7,10 +7,10 @@
 }
 
 
-<div class="d-flex p-2 justify-content-center ">
+<div class="container">
 
-    <div class="row">
-        <div class="col">
+    <div class="row mb-5">
+        <div class="col-lg-4">
             Pocetna destinacija:
             <select name="MestoPolaska"
                     id="mestoPolaska"
@@ -23,7 +23,7 @@
             </select>
         </div>
 
-        <div class="col">
+        <div class="col-lg-4">
             Kranja destinacija:
             <select name="MestoDolaska"
                     id="mestoDolaska"
@@ -37,17 +37,17 @@
 
 
         </div>
-    </div>
+        <div class="col-lg-4" >
 
-    <div class="row">
-
-        <div class="col">
-
-            <div id="check" hidden="hidden">
+            <div id="check" hidden="hidden" style="margin-top: 20px;margin-left: 55%">
                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                 <label for="vehicle1">Bez presedanja</label>
             </div>
+
         </div>
+    </div>
+
+    <div class="row">
 
 
         <div class="col">
@@ -55,8 +55,6 @@
 
                 <thead>
                     <tr>
-                        <th>Pocetna destinacija</th>
-                        <th>Krajnja destinacija</th>
                         <th>Broj presedanja</th>
                         <th>Datum</th>
                         <th>Broj mesta</th>
@@ -83,6 +81,11 @@
         if (polazakVal == 'Mesto' || dolazakVal == 'Mesto')
             return;
 
+        if (polazakVal == dolazakVal) {
+            alert("Ne moze isti polazak i dolazak !");
+            return;
+        }
+
       $.ajax({
           url: '@Url.ActionLink("GetFlightsByCriteria", "Let")',
           data: {
@@ -97,8 +100,6 @@
 
                     datum = new Date(data[i].datum).toLocaleDateString();
                     $("tbody").append("<tr id=" + data[i].letId + ">" +
-                        "<td>" + data[i].mestoPolaska + "</td>" +
-                        "<td>" + data[i].mestoDolaska + "</td>" +
                         "<td>" + data[i].brojPresedanja + "</td>" +
                         "<td>" + datum + "</td>" +
                         "<td><input type='text'/></td>" +
