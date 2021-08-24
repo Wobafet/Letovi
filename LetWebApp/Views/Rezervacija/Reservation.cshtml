@@ -40,7 +40,7 @@
         <div class="col-lg-4" >
 
             <div id="check" hidden="hidden" style="margin-top: 20px;margin-left: 55%">
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <input type="checkbox" id="vehicle1">
                 <label for="vehicle1">Bez presedanja</label>
             </div>
 
@@ -72,6 +72,7 @@
 
     $('select').on('change', function (e) {
 
+        $('#vehicle1').prop('checked', false);
         var polazak = document.getElementById("mestoPolaska");
         var dolazak = document.getElementById("mestoDolaska");
 
@@ -122,8 +123,8 @@
     <script>
     function reservation(id) {
         var row = $(`#${id}`).closest('tr');
-
-        var brojMesta = row.find('td:eq(4)').children('input').val();
+        var brojMesta = row.find('td:eq(2)').children('input').val();
+        alert(brojMesta);
 
         $.ajax({
             url: '@Url.ActionLink("FlightReserve","Rezervacija")',
@@ -164,7 +165,7 @@
     function bezPresedenja() {
         $("tbody tr").each(function () {
             var row = $(this);
-            var brojPresedanja = row.find('td:eq(2)').text();
+            var brojPresedanja = row.find('td:eq(0)').text();
             if (brojPresedanja > 0)
                 row.attr("hidden", true);
 
